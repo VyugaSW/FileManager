@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,12 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Directory.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Files.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="Directory.h" />
+    <ClInclude Include="Files.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Menu_Yes_No.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

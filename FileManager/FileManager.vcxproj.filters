@@ -18,15 +18,21 @@
     <ClCompile Include="FileManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Files.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Directory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions.h">
+    <ClInclude Include="Files.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Menu_Yes_No.h">
+    <ClInclude Include="Directory.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
