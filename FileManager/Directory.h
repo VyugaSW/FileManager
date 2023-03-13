@@ -15,10 +15,11 @@ public:
 		name = new char[strlen(n) + 1];
 		strcpy_s(name, strlen(n) + 2, n);
 	}
-	int create();
-	int delete_();
-	int size();
-	int copy(char* , const char[]);
-	static void showDisks();
+	int create(); // Create directory
+	int delete_(); // Delete directory
+	int size(); // Know size of directory
+	int copy(char* , char[]); // Copy directory
+	static void showDisk(const char*); // Show all files of disk
+	static void search(char*, vector<string>&, char*); // Search files in directory
 };
 

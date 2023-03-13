@@ -16,23 +16,21 @@
 
 using namespace std;
 
-// Текстовые файлы
+
+// Text files
+
+// Show data from file
 void ShowDataFiles() {
 	system("cls");
+	// Enter path to file
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
-	
-
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не сущесвует\n";
-		Sleep(2000);
-		return;
-	}
 
 	InFiles* file = new InFiles(name);
 
 	cout << "Содержимое файла:\n";
+	// Check
 	if (!file->show_data())
 		cout << "Ошибка при открытии файла!\n";
 
@@ -40,21 +38,17 @@ void ShowDataFiles() {
 
 	Sleep(2000);
 }
+// Redact file
 void EditFile(int mode = 0) {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не сущесвует\n";
-		Sleep(2000);
-		return;
-	}
-
 	cout << "Введите новый текст в файл:\n";
 	char* text = new char[25000];
 
+	// Clear flow
 	cin.ignore();
 	gets_s(text, 25001);
 
@@ -72,17 +66,12 @@ void EditFile(int mode = 0) {
 
 	Sleep(2000);
 }
+// Clear file from text
 void ClearFile() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
-
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не сущесвует\n";
-		Sleep(2000);
-		return;
-	}
 
 	InFiles* file = new InFiles(name);
 
@@ -96,24 +85,15 @@ void ClearFile() {
 	Sleep(2000);
 }
 
-//Директории
+
+// Directories
+
+// Create new directory
 void CreateDirectory_() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя директории:\n";
 	cin >> name;
-
-	if (filesystem::exists(name)) {
-		cout << "\nТакая директория уже существует\n";
-		Sleep(2000);
-		return;
-	}
-
-	if (!filesystem::is_directory(name)) {
-		cout << "Введённо имя не является диркеторией\n";
-		Sleep(2000);
-		return;
-	}
 
 	Directory* dir = new Directory(name);
 
@@ -126,23 +106,13 @@ void CreateDirectory_() {
 
 	Sleep(2000);
 }
+// Delete directory
 void DeleteDirectory_() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя директории:\n";
 	cin >> name;
 
-	if (!filesystem::exists(name)) {
-		cout << "\nТакой директории не существует\n";
-		Sleep(2000);
-		return;
-	}
-
-	if (!filesystem::is_directory(name)) {
-		cout << "Введённо имя не является диркеторией\n";
-		Sleep(2000);
-		return;
-	}
 
 	Directory* dir = new Directory(name);
 
@@ -155,22 +125,13 @@ void DeleteDirectory_() {
 
 	Sleep(2000);
 }
+// Know size of directory
 void SizeOfDirectory() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя директории:\n";
 	cin >> name;
 
-	if (!filesystem::exists(name)) {
-		cout << "\nТакой директории не существует\n";
-		Sleep(2000);
-		return;
-	}
-	if (!filesystem::is_directory(name)) {
-		cout << "Введённо имя не является диреторией\n";
-		Sleep(2000);
-		return;
-	}
 
 	Directory* dir = new Directory(name);
 
@@ -182,28 +143,19 @@ void SizeOfDirectory() {
 	cout << "\nНажмите любую клавишу для продолжения ... \n";
 	_getch();
 }
+// Copy directory
 void CopyDirectory() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя копируемой директории:\n";
 	cin >> name;
 
-	if (!filesystem::exists(name)) {
-		cout << "\nТакой директории не существует\n";
-		Sleep(2000);
-		return;
-	}
-	if (!filesystem::is_directory(name)) {
-		cout << "\nВведённо имя не является диреторией\n";
-		Sleep(2000);
-		return;
-	}
-
 	char* path = new char[_MAX_PATH];
 	cout << "Введите путь новой директории:\n";
 	cin >> path;
 
 	char mode[3];
+	// all - copy directory with subdirectories, fls - copy only files from directory and subdirectories
 	cout << "Введите тип копирования (all - с подкаталогами, fls - только файлы и файлы из подкаталогов):\n";
 	cin >> mode;
 
@@ -217,7 +169,48 @@ void CopyDirectory() {
 	delete dir;
 	Sleep(2000);
 }
-// Файлы
+// Search files in direcory (with mask or without mask)
+void SearchInDirectory() {
+	system("cls");
+	char* path = new char[_MAX_PATH - 15];
+	char* mask = new char[15];
+
+	cout << "Введите путь:\n";
+	cin >> path;
+	cout << "Введите маску:\n";
+	cin >> mask;
+
+	cout << "\n\n Найденные файлы по запросу:\n";
+
+	vector<string> files;
+
+	Directory::search(path, files, mask);
+
+	for (vector<string>::iterator iter = files.begin(); iter != files.end(); iter++) {
+		cout << *iter << endl;
+	}
+
+	cout << "\nНажмите любую клавишу для продолжения ... \n";
+	_getch();
+}
+
+
+// Disk
+
+// Show all files of disk
+void ShowDisk() {
+	system("cls");
+	char* name = new char[25];
+	cout << "Введите имя диска (C:\\ / D:\\):\n";
+	cin >> name;
+	cout << "НАЙДЕННЫЕ ФАЙЛЫ:\n";
+	Directory::showDisk(name);
+}
+
+
+// Files
+
+// Rename file of directory
 void RenameFileDir() {
 	system("cls");
 
@@ -226,10 +219,6 @@ void RenameFileDir() {
 
 	cout << "Введите старое имя файла:\n";
 	cin >> oldName;
-	if (_access(oldName,00) == -1) {
-		cout << "\nОшибка! Указанный файл не найден или недоступен\n";
-		return;
-	}
 
 	cout << "Введите новое имя файла:\n";
 	cin >> newName;
@@ -246,17 +235,12 @@ void RenameFileDir() {
 
 	Sleep(2000);
 }
+// Create new file
 void CreateFile_() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
-
-	if (_access(name, 00) == 0) {
-		cout << "\nТакой файл уже существует\n";
-		Sleep(2000);
-		return;
-	}
 
 	Files *file = new Files(name);
 
@@ -269,17 +253,13 @@ void CreateFile_() {
 
 	Sleep(2000);
 }
+// Delete file
 void DeleteFile_() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не сущесвует\n";
-		Sleep(2000);
-		return;
-	}
 	Files* file = new Files(name);
 
 	if (file->delete_() == 0)
@@ -289,17 +269,13 @@ void DeleteFile_() {
 
 	Sleep(2000);
 }
+// Know size of file
 void SizeOfFile() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не сущесвует\n";
-		Sleep(2000);
-		return;
-	}
 	
 	Files* file = new Files(name);
 
@@ -313,56 +289,12 @@ void SizeOfFile() {
 	cout << "\nНажмите любую клавишу для продолжения ... \n";
 	_getch();
 }
-void SearchInDirectory() {
-	system("cls");
-	char* path = new char[_MAX_PATH - 15];
-	char* mask = new char[15];
-	
-	cout << "Введите путь:\n";
-	cin >> path;
-	cout << "Введите маску:\n";
-	cin >> mask;
-
-	cout << "\n\n Найденные файлы по запросу:\n";
-
-	vector<string> files;
-	Files* file = new Files(path);
-
-	file->search(path,files,mask);
-
-	for (vector<string>::iterator iter = files.begin(); iter != files.end(); iter++) {
-		cout << *iter << endl;
-	}
-
-	delete file;
-
-	cout << "\nНажмите любую клавишу для продолжения ... \n";
-	_getch();
-}
-void ShowDisks() {
-	/*vector<string> files;
-
-	cout << "Диск C:\n";
-	Files::showDisks("C:\\Test",files);
-
-	for (vector<string>::iterator iter = files.begin(); iter != files.end(); iter++) {
-		cout << *iter << endl;
-	}
-
-	cout << "\nНажмите любую клавишу для продолжения ... \n";
-	_getch();*/
-}
+// Cope file
 void CopyFile_() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
 	cout << "Введите имя копируемого файла:\n";
 	cin >> name;
-
-	if (_access(name, 00) == -1) {
-		cout << "\nТакого файла не существует\n";
-		Sleep(2000);
-		return;
-	}
 
 	char* path = new char[_MAX_PATH];
 	cout << "\nВведите путь копии файла\n";
@@ -382,19 +314,22 @@ void CopyFile_() {
 int main()
 {
 	setlocale(LC_ALL, "RUSSIAN");
-	int key = 0;
+	int key = 1;
 	Menu menu, menu2, menu3;
 
-	 
+	// Main loop
 	while (key != 1) {
 		system("cls");
 
 		switch (key = menu.DisplayMenu()) {
+			// Show disk
 		case 1: 
-			ShowDisks();
+			ShowDisk();
 			break;
+			// Create file or directory
 		case 2: 
 			system("cls");
+			// Menu for directory or file
 			switch (menu3.DisplayMenuFileDir()) {
 			case 1:
 				CreateFile_();
@@ -404,6 +339,7 @@ int main()
 				break;
 			}
 			break;
+			// Delete file or directory
 		case 3: 
 			system("cls");
 			switch (menu3.DisplayMenuFileDir()) {
@@ -415,9 +351,11 @@ int main()
 				break;
 			}
 			break;
+			// Rename file or directory
 		case 4: 
 			RenameFileDir();
 			break;
+			// Copy file or directory
 		case 5:
 			system("cls");
 			switch (menu3.DisplayMenuFileDir()) {
@@ -429,6 +367,7 @@ int main()
 				break;
 			}
 			break;
+			// Size of file or directory
 		case 6: 
 			system("cls");
 			switch (menu3.DisplayMenuFileDir()) {
@@ -440,25 +379,31 @@ int main()
 				break;
 			}
 			break;
+			// All files (with mask) in directory
 		case 7: 
 			SearchInDirectory();
 			break;
+			// Search on name of file()
 		case 8: 
 			break;
+			// Show data in file
 		case 10:
 			ShowDataFiles();
 			break;
+			// Interact with text files
 		case 9:
 			system("cls");
-			
 			switch (menu2.DisplayMenuEditFile()) {
 			case 1:
+				// Clear file
 				ClearFile();
 				break;
 			case 2:
+				// Redact file
 				EditFile();
 				break;
 			case 3:
+				// Clear and redact file
 				EditFile(1);
 			}
 			break;

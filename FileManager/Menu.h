@@ -7,37 +7,40 @@
 using namespace std;
 
 class Menu {
+	// For color
 	HANDLE hConsole;
 	enum ColorConsole { White = 7, Blue = 3 };
+
+	// Key of menu option
 	int menuKey;
 
-	int DisplayOne();
-	int DisplayTwo();
-	int DisplayThree();
-	int DisplayFour();
-	int DisplayFive();
-	int DisplaySix();
-	int DisplaySeven();
-	int DisplayEight();
-	int DisplayNine();
-	int DisplayTen();
+	int DisplayOne(); // first option of main display
+	int DisplayTwo(); // second option of main display
+	int DisplayThree(); // third option of main display
+	int DisplayFour(); // fourth option of main display
+	int DisplayFive(); // fifth option of main display
+	int DisplaySix(); // sixth option of main display
+	int DisplaySeven(); // seventh option of main display
+	int DisplayEight(); // eighth option of main display
+	int DisplayNine(); // nineth option of main display
+	int DisplayTen(); // tenth option of main display
 
-	int DisplayMenuEditFileOne();
-	int DisplayMenuEditFileTwo(); 
-	int DisplayMenuEditFileThree();
+	int DisplayMenuEditFileOne(); // first option of text files display
+	int DisplayMenuEditFileTwo();  // second option of text files display
+	int DisplayMenuEditFileThree(); // third option of text files display
 
-	int DisplayMenuFileDirOne();
-	int DisplayMenuFileDirTwo();
+	int DisplayMenuFileDirOne(); // first option of directory/file display
+	int DisplayMenuFileDirTwo(); // second option of directory/file display
 public:
-	int DisplayMenu();
-	int DisplayMenuFileDir();
-	int DisplayMenuEditFile();
+	int DisplayMenu(); // Main menu function
+	int DisplayMenuFileDir(); // Directory/file display
+	int DisplayMenuEditFile(); // Text file display
 };
 
 
 
 //			МЕНЮ
-// |- Показать содержимое дисков -		  1
+// |- Показать содержимое дисков +		  1
 // |- Создать папку/файл ++			      2
 // |- Удалить папку/файл ++				  3
 // |- Переименовать папку/файл ++		  4
@@ -282,9 +285,9 @@ int Menu::DisplayOne() {
 	menuKey = 1;
 
 	cout << "\tМЕНЮ\n";
-	SetConsoleTextAttribute(hConsole, Blue);
+	SetConsoleTextAttribute(hConsole, Blue); // Change color on blue
 	cout << "|- Показать содержимое дисков <-\n";
-	SetConsoleTextAttribute(hConsole, White);
+	SetConsoleTextAttribute(hConsole, White); // Change color on white (default color)
 	cout << "|- Создать папку/файл\n";
 	cout << "|- Удалить папку/файл\n";
 	cout << "|- Переименовать папку/файл\n";

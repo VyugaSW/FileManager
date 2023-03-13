@@ -33,12 +33,11 @@ class Files : public InFiles
 public:
 	Files(char* n) : InFiles(n) {};
 
-	int rename_(char* );
-	bool create();
-	int delete_();
-	int copy(char*);
-	int size();
-	void search(char*, vector<string>&, char*);
-	int search_on_name();
+	int rename_(char* ); // Rename file
+	bool create(); // Create file
+	int delete_(); // Delete file
+	int copy(char*); // Copy file
+	int size(); // Know size of file
+	int search_on_name(const char* ); // Search file on name
 };
 
