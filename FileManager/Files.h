@@ -15,9 +15,11 @@ using namespace std;
 class FilesName {
 protected:
 	char* name;
+	int size;
 	FilesName(char* n) {
-		name = new char[strlen(n) + 1];
-		strcpy_s(name, strlen(n) + 2, n);
+		size = strlen(n) + 2;
+		name = new char[size];
+		strcpy_s(name, size, n);
 	}
 	~FilesName() {
 		delete[] name;
