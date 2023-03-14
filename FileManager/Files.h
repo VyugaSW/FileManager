@@ -25,6 +25,9 @@ public:
 	int show_data();
 	int redact(char* );
 	int clear();
+	~InFiles() {
+		delete[] name;
+	}
 };
 
 

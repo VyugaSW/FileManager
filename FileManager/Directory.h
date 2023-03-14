@@ -21,5 +21,8 @@ public:
 	int copy(char* , char[]); // Copy directory
 	static void showDisk(const char*); // Show all files of disk
 	static void search(char*, vector<string>&, char*); // Search files in directory
+	~Directory() {
+		delete[] name;
+	}
 };
 
