@@ -310,18 +310,30 @@ void CopyFile_() {
 	delete file;
 	Sleep(2000);
 }
+// Search file on name
+void SearchOnName() {
+	system("cls");
+	char* name = new char[_MAX_PATH];
+	cout << "Введите имя искомого файла (только название и расширение):\n";
+	cin >> name;
 
+	if (!Files::search_on_name(name)) 
+		cout << "\nОшибка при поиске!\n";
+	cout << "Полный путь к файлу:\n";
+
+	cout << "\nНажмите любую клавишу для продолжения ... \n";
+	_getch();
+}
 int main()
 {
 	setlocale(LC_ALL, "RUSSIAN");
-	int key = 1;
 	Menu menu, menu2, menu3;
 
 	// Main loop
-	while (key != 1) {
+	while (true) {
 		system("cls");
 
-		switch (key = menu.DisplayMenu()) {
+		switch (menu.DisplayMenu()) {
 			// Show disk
 		case 1: 
 			ShowDisk();
@@ -384,7 +396,8 @@ int main()
 			SearchInDirectory();
 			break;
 			// Search on name of file()
-		case 8: 
+		case 8:
+			SearchOnName();
 			break;
 			// Show data in file
 		case 10:

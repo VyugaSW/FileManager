@@ -38,6 +38,6 @@ public:
 	int delete_(); // Delete file
 	int copy(char*); // Copy file
 	int size(); // Know size of file
-	int search_on_name(const char* ); // Search file on name
+	static int search_on_name(const char* ); // Search file on name
 };
 
