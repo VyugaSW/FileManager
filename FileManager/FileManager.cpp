@@ -314,16 +314,20 @@ void CopyFile_() {
 void SearchOnName() {
 	system("cls");
 	char* name = new char[_MAX_PATH];
+	char* path = new char[_MAX_PATH];
 	cout << "Введите имя искомого файла (только название и расширение):\n";
 	cin >> name;
+	cout << "Введите самое приближенную область поиска:\n";
+	cin >> path;
 
-	if (!Files::search_on_name(name)) 
+	if (!Files::search_on_name(path,name)) 
 		cout << "\nОшибка при поиске!\n";
 	cout << "Полный путь к файлу:\n";
 
 	cout << "\nНажмите любую клавишу для продолжения ... \n";
 	_getch();
 }
+
 int main()
 {
 	setlocale(LC_ALL, "RUSSIAN");

@@ -91,7 +91,7 @@ int Files::size() {
 
 
 // Search file on name
-int Files::search_on_name(const char* path) {
+int Files::search_on_name(const char* path, char* name) {
 	if (!filesystem::exists(path)) // If this path doesn't exist
 		return -1;
 	for (auto const& dir : filesystem::directory_iterator(path)) {
@@ -103,10 +103,10 @@ int Files::search_on_name(const char* path) {
 			}
 			// If path is directory
 			if (dir.is_directory()) {
-				search_on_name(dir.path().string().c_str());
+				search_on_name(dir.path().string().c_str(),name);
 			}
 			// If path is searching name
-			if (!strcmp((dir.path().filename().string()+dir.path().extension().string()).c_str(), path)) {
+			if (!strcmp((dir.path().filename().string()+dir.path().extension().string()).c_str(), name)) {
 				cout << dir.path().string();
 				break;
 			}
