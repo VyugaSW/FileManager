@@ -4,7 +4,7 @@
 #include <conio.h>;
 #include <Windows.h>
 #include <string>
-
+#include <vector>
 using namespace std;
 
 class Directory

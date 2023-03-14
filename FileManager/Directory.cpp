@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <filesystem>
 #include <fileapi.h>
+#include <vector>
 
 using namespace std;
 
