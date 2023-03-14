@@ -18,7 +18,7 @@ int InFiles::show_data() {
 		return -1;
 
 	while (!f.eof()) {
-		f.getline(temp, 65235);
+		f.getline(temp, 65236);
 		cout << temp << endl;
 	};
 
@@ -106,7 +106,7 @@ int Files::search_on_name(const char* path) {
 				search_on_name(dir.path().string().c_str());
 			}
 			// If path is searching name
-			if (!strcmp((dir.path().filename().string()+dir.path().extension().string()).c_str(), name)) {
+			if (!strcmp((dir.path().filename().string()+dir.path().extension().string()).c_str(), path)) {
 				cout << dir.path().string();
 				break;
 			}
