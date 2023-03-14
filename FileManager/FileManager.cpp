@@ -27,14 +27,13 @@ void ShowDataFiles() {
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	InFiles* file = new InFiles(name);
+	InFiles file(name);
 
 	cout << "Содержимое файла:\n";
 	// Check
-	if (!file->show_data())
+	if (!file.show_data())
 		cout << "Ошибка при открытии файла!\n";
 
-	delete file;
 
 	Sleep(2000);
 }
@@ -52,17 +51,16 @@ void EditFile(int mode = 0) {
 	cin.ignore();
 	gets_s(text, 25001);
 
-	InFiles* file = new InFiles(name);
+	InFiles file(name);
 
 	if (mode != 0)
-		file->clear();
+		file.clear();
 
-	if (file->redact(text))
+	if (file.redact(text))
 		cout << "Успешная запись в файл!\n";
 	else
 		cout << "Ошибка при записи или открытия файла\n";
 
-	delete file;
 
 	Sleep(2000);
 }
@@ -73,14 +71,13 @@ void ClearFile() {
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	InFiles* file = new InFiles(name);
+	InFiles file(name);
 
-	if (file->clear())
+	if (file.clear())
 		cout << "Файл успешно был очищен!\n";
 	else
 		cout << "Ошибка при открытии файла\n";
 
-	delete file;
 
 	Sleep(2000);
 }
@@ -95,14 +92,12 @@ void CreateDirectory_() {
 	cout << "Введите имя директории:\n";
 	cin >> name;
 
-	Directory* dir = new Directory(name);
+	Directory dir(name);
 
-	if (dir->create() == false)
+	if (dir.create() == false)
 		cout << "\nОшибка при создании директории\n";
 	else
 		cout << "\nДиректория успешно создана!\n";
-
-	delete dir;
 
 	Sleep(2000);
 }
@@ -114,14 +109,13 @@ void DeleteDirectory_() {
 	cin >> name;
 
 
-	Directory* dir = new Directory(name);
+	Directory dir(name);
 
-	if (dir->delete_() == false)
+	if (dir.delete_() == false)
 		cout << "\nОшибка при удалении директории\n";
 	else
 		cout << "\nДиректория успешно удалена!\n";
 
-	delete dir;
 
 	Sleep(2000);
 }
@@ -133,12 +127,11 @@ void SizeOfDirectory() {
 	cin >> name;
 
 
-	Directory* dir = new Directory(name);
+	Directory dir(name);
 
 
-	cout << "Размер директории - " << dir->size() << " байт" << endl;
+	cout << "Размер директории - " << dir.size() << " байт" << endl;
 
-	delete dir;
 
 	cout << "\nНажмите любую клавишу для продолжения ... \n";
 	_getch();
@@ -159,14 +152,13 @@ void CopyDirectory() {
 	cout << "Введите тип копирования (all - с подкаталогами, fls - только файлы и файлы из подкаталогов):\n";
 	cin >> mode;
 
-	Directory* dir = new Directory(path);
+	Directory dir(path);
 
-	if (dir->copy(name,mode))
+	if (dir.copy(name,mode))
 		cout << "\nДиректория успешно скопирована!\n";
 	else
 		cout << "\nОшибка при работе с директориями\n";
 
-	delete dir;
 	Sleep(2000);
 }
 // Search files in direcory (with mask or without mask)
@@ -223,15 +215,14 @@ void RenameFileDir() {
 	cout << "Введите новое имя файла:\n";
 	cin >> newName;
 
-	Files* file = new Files(oldName);
+	Files file(oldName);
 
-	if (file->rename_(newName) == 0)
+	if (file.rename_(newName) == 0)
 		cout << "\nФайл/папка был успешно переименова!\n";
 	else 
 		cout << "\nОшибка при переименовании файла/папки!\n";
 
 
-	delete file;
 
 	Sleep(2000);
 }
@@ -242,14 +233,12 @@ void CreateFile_() {
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	Files *file = new Files(name);
+	Files file(name);
 
-	if (file->create() == true) 
+	if (file.create() == true) 
 		cout << "\nОшибка при создании файла\n";
 	else
 		cout << "\nФайл успешно создан!\n";
-
-	delete file;
 
 	Sleep(2000);
 }
@@ -260,9 +249,9 @@ void DeleteFile_() {
 	cout << "Введите имя файла:\n";
 	cin >> name;
 
-	Files* file = new Files(name);
+	Files file(name);
 
-	if (file->delete_() == 0)
+	if (file.delete_() == 0)
 		cout << "\nФайл успешно удалён!\n";
 	else
 		cout << "\nОшибка при удалении файла!\n";
@@ -277,9 +266,9 @@ void SizeOfFile() {
 	cin >> name;
 
 	
-	Files* file = new Files(name);
+	Files file(name);
 
-	int size = file->size();
+	int size = file.size();
 
 	if(size != -1)
 		cout << "Размер данного файла - " << size << " байт\n";
@@ -300,14 +289,13 @@ void CopyFile_() {
 	cout << "\nВведите путь копии файла\n";
 	cin >> path;
 
-	Files* file = new Files(path);
+	Files file(name);
 
-	if (file->copy(name)) 
+	if (file.copy(name)) 
 		cout << "\nФайл успешно скопирован!\n";
 	else
 		cout << "\nОшибка при работе с файлами\n";
 
-	delete file;
 	Sleep(2000);
 }
 // Search file on name
