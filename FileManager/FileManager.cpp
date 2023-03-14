@@ -333,7 +333,6 @@ int main()
 {
 	setlocale(LC_ALL, "RUSSIAN");
 	Menu menu, menu2, menu3;
-
 	// Main loop
 	while (true) {
 		system("cls");

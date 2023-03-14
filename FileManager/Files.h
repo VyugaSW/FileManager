@@ -12,29 +12,34 @@
 
 using namespace std;
 
-class InFiles
-{
+class FilesName {
 protected:
 	char* name;
-public:
-	InFiles(char* n) {
+	FilesName(char* n) {
 		name = new char[strlen(n) + 1];
 		strcpy_s(name, strlen(n) + 2, n);
 	}
-
-	int show_data();
-	int redact(char* );
-	int clear();
-	~InFiles() {
+	~FilesName() {
 		delete[] name;
 	}
 };
 
 
-class Files : public InFiles
+
+class InFiles : public FilesName {
+public:
+	InFiles(char* n) : FilesName(n) {};
+
+	virtual int show_data();
+	virtual int redact(char* );
+	virtual int clear();
+};
+
+
+class Files : public FilesName
 {
 public:
-	Files(char* n) : InFiles(n) {};
+	Files(char* n) : FilesName(n) {};
 
 	int rename_(char* ); // Rename file
 	bool create(); // Create file
