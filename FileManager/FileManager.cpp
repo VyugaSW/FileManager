@@ -322,6 +322,7 @@ void SearchOnName() {
 
 	if (!Files::search_on_name(path,name)) 
 		cout << "\nОшибка при поиске!\n";
+
 	cout << "Полный путь к файлу:\n";
 
 	cout << "\nНажмите любую клавишу для продолжения ... \n";
