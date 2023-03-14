@@ -68,10 +68,11 @@ bool Files::create() {
 	if (_access(name, 00) == 0) // If file with this path already exists
 		return false;
 	ofstream f(name);
-	f.close();
-	if (!f) // If file wasn't opened
+	if (!f.is_open()) // If file wasn't opened
 		return false;
-
+	if (!f)
+		return false;
+	f.close();
 	return f.bad();
 }
 
